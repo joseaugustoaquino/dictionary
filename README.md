@@ -1,92 +1,191 @@
-# Dictionary
+# Mobile Challenge 🏅 2022 - Dictionary
 
+## Introdução
 
+Este é um desafio para que possamos ver as suas habilidades como Mobile Developer.
 
-## Getting started
+Nesse desafio você deverá desenvolver um aplicativo para listar palavras em inglês, utilizando como base a API [Free Dictionary API](https://dictionaryapi.dev/). O projeto a ser desenvolvido por você tem como objetivo exibir termos em inglês e gerenciar as palavras visualizadas, conforme indicado nos casos de uso que estão logo abaixo.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+[SPOILER] As instruções de entrega e apresentação do challenge estão no final deste Readme (=
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+### Instruções iniciais obrigatórias
 
-## Add your files
+- Utilizar o seu github pessoal para publicar o desafio. Confirme que a visibilidade do projeto é pública (não esqueça de colocar no readme a referência a este challenge);
+- Utilize as seguintes tecnologias:
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+#### Tecnologias (Mobile):
+- Nativo ou Hibrido (Flutter, Ionic, React Native, etc)
+- Estilização (Material, Semantic, etc). Ou escrever o seu proprio sob medida 👌
+- Gestão de dados (Redux, Context API, IndexedDB, SQLite, etc)
 
+Atente-se, ao desenvolver a aplicação mobile, para conceitos de usabilidade e adeque a interface com elementos visuais para os usuários do seu sistema.
+
+#### Tecnologias (Back-End):
+- Firebase, Supabase, etc
+
+#### Organização:
+- Aplicação de padrões Clean Code
+- Validação de chamadas assíncronas para evitar travamentos
+
+### Modelo de Dados:
+
+Conforme indicado na documentação da API, a estrutura de dados presente retorna as seguintes informações:
+
+```json
+[
+    {
+        "word": "hello",
+        "phonetics": [
+            {
+                "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/hello-au.mp3",
+                "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=75797336",
+                "license": {
+                    "name": "BY-SA 4.0",
+                    "url": "https://creativecommons.org/licenses/by-sa/4.0"
+                }
+            },
+            {
+                "text": "/həˈləʊ/",
+                "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/hello-uk.mp3",
+                "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=9021983",
+                "license": {
+                    "name": "BY 3.0 US",
+                    "url": "https://creativecommons.org/licenses/by/3.0/us"
+                }
+            },
+            {
+                "text": "/həˈloʊ/",
+                "audio": ""
+            }
+        ],
+        "meanings": [
+            {
+                "partOfSpeech": "noun",
+                "definitions": [
+                    {
+                        "definition": "\"Hello!\" or an equivalent greeting.",
+                        "synonyms": [],
+                        "antonyms": []
+                    }
+                ],
+                "synonyms": [
+                    "greeting"
+                ],
+                "antonyms": []
+            },
+            {
+                "partOfSpeech": "verb",
+                "definitions": [
+                    {
+                        "definition": "To greet with \"hello\".",
+                        "synonyms": [],
+                        "antonyms": []
+                    }
+                ],
+                "synonyms": [],
+                "antonyms": []
+            },
+            {
+                "partOfSpeech": "interjection",
+                "definitions": [
+                    {
+                        "definition": "A greeting (salutation) said when meeting someone or acknowledging someone’s arrival or presence.",
+                        "synonyms": [],
+                        "antonyms": [],
+                        "example": "Hello, everyone."
+                    },
+                    {
+                        "definition": "A greeting used when answering the telephone.",
+                        "synonyms": [],
+                        "antonyms": [],
+                        "example": "Hello? How may I help you?"
+                    },
+                    {
+                        "definition": "A call for response if it is not clear if anyone is present or listening, or if a telephone conversation may have been disconnected.",
+                        "synonyms": [],
+                        "antonyms": [],
+                        "example": "Hello? Is anyone there?"
+                    },
+                    {
+                        "definition": "Used sarcastically to imply that the person addressed or referred to has done something the speaker or writer considers to be foolish.",
+                        "synonyms": [],
+                        "antonyms": [],
+                        "example": "You just tried to start your car with your cell phone. Hello?"
+                    },
+                    {
+                        "definition": "An expression of puzzlement or discovery.",
+                        "synonyms": [],
+                        "antonyms": [],
+                        "example": "Hello! What’s going on here?"
+                    }
+                ],
+                "synonyms": [],
+                "antonyms": [
+                    "bye",
+                    "goodbye"
+                ]
+            }
+        ],
+        "license": {
+            "name": "CC BY-SA 3.0",
+            "url": "https://creativecommons.org/licenses/by-sa/3.0"
+        },
+        "sourceUrls": [
+            "https://en.wiktionary.org/wiki/hello"
+        ]
+    }
+]
 ```
-cd existing_repo
-git remote add origin https://lab.coodesh.com/challenges/apps/dictionary.git
-git branch -M main
-git push -uf origin main
-```
 
-## Integrate with your tools
+### Front-End:
 
-- [ ] [Set up project integrations](https://lab.coodesh.com/challenges/apps/dictionary/-/settings/integrations)
+Nessa etapa você deverá desenvolver uma aplicação móvel nativa ou hibrida para consumir a API do desafio.
 
-## Collaborate with your team
+**Obrigatório 1** - Você deverá atender aos seguintes casos de uso:
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+- Como usuário, devo ser capaz de visualizar uma lista de palavras com rolagem infinita
+- Como usuário, devo ser capaz de visualizar uma palavra, significados e a fonética
+- Como usuário, devo ser capaz de salvar a palavra como favorito
+- Como usuário, devo ser capaz de remover a palavra como favorito
+- Como usuário, devo ser capaz de visitar uma lista com as palavras que já vi anteriormente
 
-## Test and Deploy
+**Obrigatório 2** - Seguir o wireframe para a página de listagem dos dados.
 
-Use the built-in continuous integration in GitLab.
+<img src="./img/wireframe.png" width="100%" />
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+**Diferencial 1** - Escrever Unit Tests ou E2E Test. Escolher a melhor abordagem e biblioteca;
 
-***
+**Diferencial 2** - Utilizar alguma ferramenta de Injeção de Dependência;
 
-# Editing this README
+**Diferencial 3** - Implementar login com usuário e senha e associar os favoritos e histórico ao ID do usuário, salvando essa informação no Back-end
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+**Obrigatório 4** - Salvar em cache o resultado das requisições ao Free Dictionary API, para agilizar a resposta em caso de buscas com parâmetros repetidos.
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+## Readme do Repositório
 
-## Name
-Choose a self-explaining name for your project.
+- Deve conter o título do projeto
+- Uma descrição sobre o projeto em frase
+- Deve conter uma lista com linguagem, framework e/ou tecnologias usadas
+- Como instalar e usar o projeto (instruções)
+- Não esqueça o [.gitignore](https://www.toptal.com/developers/gitignore)
+- Se está usando github pessoal, referencie que é um challenge by coodesh:  
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+>  This is a challenge by [Coodesh](https://coodesh.com/)
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+## Finalização e Instruções para a Apresentação
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+Avisar sobre a finalização e enviar para correção.
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+1. Confira se você respondeu ao Scorecard anexado na Vaga que se candidatou;
+2. Confira se você respondeu o Mapeamento anexado na Vaga que se candidatou;
+3. Acesse [https://coodesh.com/challenges/review](https://coodesh.com/challenges/review);
+4. Adicione o repositório com a sua solução;
+5. Grave um vídeo, utilizando o botão na tela de solicitar revisão da Coodesh, com no máximo 5 minutos, com a apresentação do seu projeto. Foque em pontos obrigatórios e diferenciais quando for apresentar.
+6. Adicione o link da apresentação do seu projeto no README.md.
+7. Verifique se o Readme está bom e faça o commit final em seu repositório;
+8. Confira a vaga desejada;
+9. Envie e aguarde as instruções para seguir no processo. Sucesso e boa sorte. =)
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+## Suporte
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Use o nosso canal no discord: https://discord.gg/rdXbEvjsWu para tirar dúvidas sobre o processo ou envie um e-mail para contato@coodesh.com.
