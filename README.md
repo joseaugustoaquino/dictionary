@@ -155,7 +155,7 @@ Nessa etapa você deverá desenvolver uma aplicação móvel nativa ou hibrida p
 - Como usuário, devo ser capaz de remover a palavra como favorito
 - Como usuário, devo ser capaz de visitar uma lista com as palavras que já vi anteriormente
 
-Você deve criar um script para baixar a lista de palavras do repositório e importar estas palavras para o banco de dados. A Free Dictionary API não possui endpoint com a lista de palavras. Para criar este endpoint será necessário alimentar o seu banco de dados com o [arquivo existente dentro do projeto no Github](https://github.com/meetDeveloper/freeDictionaryAPI/tree/master/meta/wordList).
+A Free Dictionary API não possui endpoint com a lista de palavras. Você precisa adicionar uma lista na aplicação, que pode ser carregada em memória ou ser salva em banco de dados local ou remoto (por exemplo, com Firebase). Será necessário alimentar essa lista com o [arquivo existente dentro do projeto no Github](https://github.com/meetDeveloper/freeDictionaryAPI/tree/master/meta/wordList).
 
 **Obrigatório 2** - Salvar em cache o resultado das requisições ao Free Dictionary API, para agilizar a resposta em caso de buscas com parâmetros repetidos.
 
@@ -167,7 +167,7 @@ Você deve criar um script para baixar a lista de palavras do repositório e imp
 
 **Diferencial 2** - Utilizar alguma ferramenta de Injeção de Dependência;
 
-**Diferencial 3** - Implementar login com usuário e senha e associar os favoritos e histórico ao ID do usuário, salvando essa informação no Back-end
+**Diferencial 3** - Implementar login com usuário e senha e associar os favoritos e histórico ao ID do usuário, salvando essa informação em banco de dados local ou remoto
 
 ## Readme do Repositório
 
