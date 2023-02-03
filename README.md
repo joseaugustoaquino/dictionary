@@ -4,7 +4,7 @@
 
 Este é um desafio para que possamos ver as suas habilidades como Mobile Developer.
 
-Nesse desafio você deverá desenvolver um aplicativo para listar palavras em inglês, utilizando como base a API [Free Dictionary API](https://dictionaryapi.dev/). O projeto a ser desenvolvido por você tem como objetivo exibir termos em inglês e gerenciar as palavras visualizadas, conforme indicado nos casos de uso que estão logo abaixo.
+Nesse desafio você deverá desenvolver um aplicativo para listar palavras em inglês, utilizando como base a API [Words API](https://www.wordsapi.com/). O projeto a ser desenvolvido por você tem como objetivo exibir termos em inglês e gerenciar as palavras visualizadas, conforme indicado nos casos de uso que estão logo abaixo.
 
 [SPOILER] As instruções de entrega e apresentação do challenge estão no final deste Readme (=
 
@@ -38,109 +38,175 @@ Atente-se, ao desenvolver a aplicação mobile, para conceitos de usabilidade e 
 Conforme indicado na documentação da API, a estrutura de dados presente retorna as seguintes informações:
 
 ```json
-[
+{
+  "word": "example",
+  "results": [
     {
-        "word": "hello",
-        "phonetics": [
-            {
-                "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/hello-au.mp3",
-                "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=75797336",
-                "license": {
-                    "name": "BY-SA 4.0",
-                    "url": "https://creativecommons.org/licenses/by-sa/4.0"
-                }
-            },
-            {
-                "text": "/həˈləʊ/",
-                "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/hello-uk.mp3",
-                "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=9021983",
-                "license": {
-                    "name": "BY 3.0 US",
-                    "url": "https://creativecommons.org/licenses/by/3.0/us"
-                }
-            },
-            {
-                "text": "/həˈloʊ/",
-                "audio": ""
-            }
-        ],
-        "meanings": [
-            {
-                "partOfSpeech": "noun",
-                "definitions": [
-                    {
-                        "definition": "\"Hello!\" or an equivalent greeting.",
-                        "synonyms": [],
-                        "antonyms": []
-                    }
-                ],
-                "synonyms": [
-                    "greeting"
-                ],
-                "antonyms": []
-            },
-            {
-                "partOfSpeech": "verb",
-                "definitions": [
-                    {
-                        "definition": "To greet with \"hello\".",
-                        "synonyms": [],
-                        "antonyms": []
-                    }
-                ],
-                "synonyms": [],
-                "antonyms": []
-            },
-            {
-                "partOfSpeech": "interjection",
-                "definitions": [
-                    {
-                        "definition": "A greeting (salutation) said when meeting someone or acknowledging someone’s arrival or presence.",
-                        "synonyms": [],
-                        "antonyms": [],
-                        "example": "Hello, everyone."
-                    },
-                    {
-                        "definition": "A greeting used when answering the telephone.",
-                        "synonyms": [],
-                        "antonyms": [],
-                        "example": "Hello? How may I help you?"
-                    },
-                    {
-                        "definition": "A call for response if it is not clear if anyone is present or listening, or if a telephone conversation may have been disconnected.",
-                        "synonyms": [],
-                        "antonyms": [],
-                        "example": "Hello? Is anyone there?"
-                    },
-                    {
-                        "definition": "Used sarcastically to imply that the person addressed or referred to has done something the speaker or writer considers to be foolish.",
-                        "synonyms": [],
-                        "antonyms": [],
-                        "example": "You just tried to start your car with your cell phone. Hello?"
-                    },
-                    {
-                        "definition": "An expression of puzzlement or discovery.",
-                        "synonyms": [],
-                        "antonyms": [],
-                        "example": "Hello! What’s going on here?"
-                    }
-                ],
-                "synonyms": [],
-                "antonyms": [
-                    "bye",
-                    "goodbye"
-                ]
-            }
-        ],
-        "license": {
-            "name": "CC BY-SA 3.0",
-            "url": "https://creativecommons.org/licenses/by-sa/3.0"
-        },
-        "sourceUrls": [
-            "https://en.wiktionary.org/wiki/hello"
-        ]
+      "definition": "a representative form or pattern",
+      "partOfSpeech": "noun",
+      "synonyms": [
+        "model"
+      ],
+      "typeOf": [
+        "representation",
+        "internal representation",
+        "mental representation"
+      ],
+      "hasTypes": [
+        "prefiguration",
+        "archetype",
+        "epitome",
+        "guide",
+        "holotype",
+        "image",
+        "loadstar",
+        "lodestar",
+        "microcosm",
+        "original",
+        "paradigm",
+        "pilot",
+        "prototype",
+        "template",
+        "templet",
+        "type specimen"
+      ],
+      "derivation": [
+        "exemplify"
+      ],
+      "examples": [
+        "I profited from his example"
+      ]
+    },
+    {
+      "definition": "something to be imitated",
+      "partOfSpeech": "noun",
+      "synonyms": [
+        "exemplar",
+        "good example",
+        "model"
+      ],
+      "typeOf": [
+        "ideal"
+      ],
+      "hasTypes": [
+        "pacemaker",
+        "pattern",
+        "beauty",
+        "prodigy",
+        "beaut",
+        "pacesetter"
+      ],
+      "derivation": [
+        "exemplify",
+        "exemplary"
+      ]
+    },
+    {
+      "definition": "an occurrence of something",
+      "partOfSpeech": "noun",
+      "synonyms": [
+        "case",
+        "instance"
+      ],
+      "typeOf": [
+        "happening",
+        "natural event",
+        "occurrence",
+        "occurrent"
+      ],
+      "hasTypes": [
+        "clip",
+        "mortification",
+        "piece",
+        "time",
+        "humiliation",
+        "bit"
+      ],
+      "derivation": [
+        "exemplify"
+      ],
+      "examples": [
+        "but there is always the famous example of the Smiths"
+      ]
+    },
+    {
+      "definition": "an item of information that is typical of a class or group",
+      "partOfSpeech": "noun",
+      "synonyms": [
+        "illustration",
+        "instance",
+        "representative"
+      ],
+      "typeOf": [
+        "information"
+      ],
+      "hasTypes": [
+        "excuse",
+        "apology",
+        "specimen",
+        "case in point",
+        "sample",
+        "exception",
+        "quintessence",
+        "precedent"
+      ],
+      "derivation": [
+        "exemplify",
+        "exemplary"
+      ],
+      "examples": [
+        "this patient provides a typical example of the syndrome",
+        "there is an example on page 10"
+      ]
+    },
+    {
+      "definition": "punishment intended as a warning to others",
+      "partOfSpeech": "noun",
+      "synonyms": [
+        "deterrent example",
+        "lesson",
+        "object lesson"
+      ],
+      "typeOf": [
+        "monition",
+        "admonition",
+        "word of advice",
+        "warning"
+      ],
+      "derivation": [
+        "exemplary"
+      ],
+      "examples": [
+        "they decided to make an example of him"
+      ]
+    },
+    {
+      "definition": "a task performed or problem solved in order to develop skill or understanding",
+      "partOfSpeech": "noun",
+      "synonyms": [
+        "exercise"
+      ],
+      "typeOf": [
+        "lesson"
+      ],
+      "examples": [
+        "you must work the examples at the end of each chapter in the textbook"
+      ]
     }
-]
+  ],
+  "syllables": {
+    "count": 3,
+    "list": [
+      "ex",
+      "am",
+      "ple"
+    ]
+  },
+  "pronunciation": {
+    "all": "ɪɡ'zæmpəl"
+  },
+  "frequency": 4.67
+}
 ```
 
 ### Front-End:
@@ -155,19 +221,21 @@ Nessa etapa você deverá desenvolver uma aplicação móvel nativa ou hibrida p
 - Como usuário, devo ser capaz de remover a palavra como favorito
 - Como usuário, devo ser capaz de visitar uma lista com as palavras que já vi anteriormente
 
-A Free Dictionary API não possui endpoint com a lista de palavras. Você precisa adicionar uma lista na aplicação, que pode ser carregada em memória ou ser salva em banco de dados local ou remoto (por exemplo, com Firebase). Será necessário alimentar essa lista com o [arquivo existente dentro do projeto no Github](https://github.com/meetDeveloper/freeDictionaryAPI/tree/master/meta/wordList).
+A API não possui endpoint com a lista de palavras. Essa lista pode ser carregada em memória ou ser salva em banco de dados local ou remoto (por exemplo, com Firebase). Será necessário usar o [arquivo existente dentro do projeto no Github](https://github.com/dwyl/english-words/blob/master/words_dictionary.json).
 
-**Obrigatório 2** - Salvar em cache o resultado das requisições ao Free Dictionary API, para agilizar a resposta em caso de buscas com parâmetros repetidos.
+**Obrigatório 2** - Salvar em cache o resultado das requisições ao Words API, para agilizar a resposta em caso de buscas com parâmetros repetidos.
 
 **Obrigatório 3** - Seguir o wireframe para a página de listagem dos dados. Pode-se alterar a posição dos itens, mantendo as funcionalidades solicitadas.
 
 <img src="./img/wireframe.png" width="100%" />
 
-**Diferencial 1** - Escrever Unit Tests ou E2E Test. Escolher a melhor abordagem e biblioteca;
+**Diferencial 1** - Implementar um tocador de audio utilizando, por exemplo, https://responsivevoice.org/api ou recursos nativos;
 
 **Diferencial 2** - Utilizar alguma ferramenta de Injeção de Dependência;
 
-**Diferencial 3** - Implementar login com usuário e senha e associar os favoritos e histórico ao ID do usuário, salvando essa informação em banco de dados local ou remoto
+**Diferencial 3** - Escrever Unit Tests ou E2E Test. Escolher a melhor abordagem e biblioteca;
+
+**Diferencial 4** - Implementar login com usuário e senha e associar os favoritos e histórico ao ID do usuário, salvando essa informação em banco de dados local ou remoto
 
 ## Readme do Repositório
 
