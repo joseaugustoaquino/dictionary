@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:dictionary/app/data/models/word_model.dart';
 import 'package:dictionary/app/data/repositories/word_repository.dart';
 import 'package:dictionary/app/widgets/snack_bar_custom.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
@@ -23,6 +24,7 @@ class WordsController extends GetxController {
   var loading = RxBool(true);
   var page = Rx(Pages.words);
   var words = RxList([WordModel()]);
+  var search = Rx(TextEditingController());
 
   @override
   void onInit() async {
@@ -33,16 +35,16 @@ class WordsController extends GetxController {
 
   @override
   void onReady() async {
-    await initWords();
+    await get();
     super.onReady();
   }
 
-  Future initWords() async {
+  Future get() async {
     try {
       loading.value = true;
-      var wordsDb = await _wordRep.get();
+      words.value = await _wordRep.get();
 
-      if (wordsDb.isEmpty) {
+      if (words.value.isEmpty) {
         var wordsJson = await rootBundle.loadString('assets/wrods.json');
         Map<String, dynamic> wordsMap = json.decode(wordsJson);
 
@@ -51,11 +53,14 @@ class WordsController extends GetxController {
                               .toList();
 
         for (var w in words.value) { await _wordRep.add(w); }
-        wordsDb = await _wordRep.get();
+        words.value = await _wordRep.get();
       }
 
-      if (wordsDb.isEmpty) 
+      if (words.value.isEmpty) 
       { throw Exception("Ops, We did not identify any registered words!"); }
+
+      if (search.value.text.isNotEmpty) 
+      { words.value = words.value.where((w) => w.description.contains(search.value.text)).toList(); }
 
       return await Future.delayed(const Duration(milliseconds: 1000), () => loading.value = false);
     } on Exception catch (_) {

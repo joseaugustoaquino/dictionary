@@ -59,15 +59,16 @@ class _WordsPageState extends State<WordsPage> {
       body: _.loading.value ? const Center(child: ZLoadingCustom(radius: 30)) : IndexedStack(
         index: _.page.value.index,
         children: const [
-          FavoriteView(),
+          WordsView(),
 
           HistoricView(),
           
-          WordsView()
+          FavoriteView(),
         ],
       ),
 
       bottomNavigationBar: BottomNavigationBar(
+        elevation: 5,
         currentIndex: _.page.value.index,
         unselectedItemColor: Colors.black,
         selectedItemColor: Get.theme.primaryColor,
