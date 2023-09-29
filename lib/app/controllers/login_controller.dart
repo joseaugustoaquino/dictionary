@@ -40,7 +40,7 @@ class LoginController extends GetxController {
 
       if (result != null) {
         if (result.password != textPassword.value.text) 
-        { throw Exception("Ops, Incorrect password");}
+        { throw Exception("Ops, Incorrect password.");}
 
         _authCon.changeUser = result;
         Get.offAndToNamed(Routes.words);
