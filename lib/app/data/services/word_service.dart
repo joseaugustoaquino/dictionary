@@ -51,9 +51,23 @@ class WordService implements WordInterface {
     if (_db == null) return [];
 
     List<Map<String, dynamic>> result = await _db?.query("words") ?? [];
-   
-    print(result);
-
-    return [];
+    return result.map((m) => WordModel(
+      id: m["id"],
+      description: m["description"],
+    )).toList();
   }
+
+  @override
+  Future<WordModel?> getById(int idWord) async {
+    _db = await DBSet.instance.database;
+    if (_db == null) return null;
+
+    List<Map<String, dynamic>> result = await _db?.rawQuery('''
+      SELECT * FROM words
+      WHERE id = ?;
+    ''', [idWord]) ?? [];
+
+
+    return result.isEmpty ? null : WordModel.fromMap(result.first);
+  } 
 }

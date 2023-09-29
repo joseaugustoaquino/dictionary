@@ -8,4 +8,6 @@ abstract class UserInterface {
   Future<bool> delete(int idUser);
 
   Future<List<UserModel>> get();
+
+  Future<UserModel?> getById(int idUser);
 }

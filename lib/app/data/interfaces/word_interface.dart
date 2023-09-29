@@ -8,4 +8,6 @@ abstract class WordInterface {
   Future<bool> delete(int idWord);
 
   Future<List<WordModel>> get();
+
+  Future<WordModel?> getById(int idWord);
 }

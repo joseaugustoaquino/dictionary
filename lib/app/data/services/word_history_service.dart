@@ -1,4 +1,8 @@
 import 'package:dictionary/app/data/databases/data_base.dart';
+import 'package:dictionary/app/data/models/user_model.dart';
+import 'package:dictionary/app/data/models/word_model.dart';
+import 'package:dictionary/app/data/services/user_service.dart';
+import 'package:dictionary/app/data/services/word_service.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:dictionary/app/data/models/word_history_model.dart';
 import 'package:dictionary/app/data/interfaces/word_history_interface.dart';
@@ -46,14 +50,59 @@ class WordHistoryService implements WordHistoryInterface {
   }
 
   @override
-  Future<List<WordHistoryModel>> get({int? idUser}) async {
+  Future<List<WordHistoryModel>> get() async {
     _db = await DBSet.instance.database;
     if (_db == null) return [];
 
     List<Map<String, dynamic>> result = await _db?.query("wordHistory") ?? [];
 
-    print(result);
+    List<UserModel> resultUsers = await UserService().get();
+    List<WordModel> resultWords = await WordService().get();
 
-    return [];
+    return result.map((m) => WordHistoryModel(
+      id: m["id"],
+      idUser: m['idUser'], 
+      idWord: m['idWord'], 
+      lastAcess: m['lastAcess'], 
+      favorite: m['favorite'], 
+      user: resultUsers.singleWhere((s) => s.id == m['idUser'], orElse: () => UserModel()), 
+      word: resultWords.singleWhere((s) => s.id == m['idWord'], orElse: () => WordModel()),
+    )).toList();
   }
+
+  @override
+  Future<WordHistoryModel?> getById(int idWordHistory) async {
+    _db = await DBSet.instance.database;
+    if (_db == null) return null;
+
+    List<Map<String, dynamic>> result = await _db?.rawQuery('''
+      SELECT * FROM wordHistory
+      WHERE id = ?;
+    ''', [idWordHistory]) ?? [];
+
+
+    return result.isEmpty ? null : WordHistoryModel.fromMap(result.first);
+  }
+  
+  @override
+  Future<List<WordHistoryModel>> getByUser(int idUser) async {
+    _db = await DBSet.instance.database;
+    if (_db == null) return [];
+
+    List<Map<String, dynamic>> result = await _db?.query("wordHistory") ?? [];
+
+    List<UserModel> resultUsers = await UserService().get();
+    List<WordModel> resultWords = await WordService().get();
+
+    return result.map((m) => WordHistoryModel(
+      id: m["id"],
+      idUser: m['idUser'], 
+      idWord: m['idWord'], 
+      lastAcess: m['lastAcess'], 
+      favorite: m['favorite'], 
+      user: resultUsers.singleWhere((s) => s.id == m['idUser'], orElse: () => UserModel()), 
+      word: resultWords.singleWhere((s) => s.id == m['idWord'], orElse: () => WordModel()),
+    )).where((w) => w.idUser == idUser).toList();
+  } 
+
 }

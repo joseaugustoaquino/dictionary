@@ -7,5 +7,9 @@ abstract class WordHistoryInterface {
 
   Future<bool> delete(int idWordHistory);
 
-  Future<List<WordHistoryModel>> get({int? idUser});
+  Future<List<WordHistoryModel>> get();
+
+  Future<WordHistoryModel?> getById(int idWordHistory);
+
+  Future<List<WordHistoryModel>> getByUser(int idUser);
 }

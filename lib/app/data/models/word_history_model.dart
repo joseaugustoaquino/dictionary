@@ -1,6 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:dictionary/app/data/models/user_model.dart';
+import 'package:dictionary/app/data/models/word_model.dart';
+
 class WordHistoryModel {
   int? id;
   int? idUser;
@@ -8,13 +11,18 @@ class WordHistoryModel {
   String lastAcess;
   String favorite;
 
+  /// Not Map
+  UserModel? user;
+  WordModel? word;
+
   WordHistoryModel({
     this.id,
     this.idUser,
     this.idWord,
-
     this.lastAcess = "",
     this.favorite = "",
+    this.user,
+    this.word,
   });
 
   Map<String, dynamic> toMap() {
@@ -22,9 +30,10 @@ class WordHistoryModel {
       'id': id,
       'idUser': idUser,
       'idWord': idWord,
-
       'lastAcess': lastAcess,
       'favorite': favorite,
+      'user': user?.toMap(),
+      'word': word?.toMap(),
     };
   }
 
@@ -36,6 +45,9 @@ class WordHistoryModel {
       
       lastAcess: map['lastAcess'] ?? "",
       favorite: map['favorite'] ?? "",
+
+      user: map['user'] != null ? UserModel.fromMap(map['user'] as Map<String,dynamic>) : null,
+      word: map['word'] != null ? WordModel.fromMap(map['word'] as Map<String,dynamic>) : null,
     );
   }
 
@@ -45,6 +57,6 @@ class WordHistoryModel {
 
   @override
   String toString() {
-    return 'WordHistoryModel(id: $id, idUser: $idUser, idWord: $idWord, lastAcess: $lastAcess, favorite: $favorite)';
+    return 'WordHistoryModel(id: $id, idUser: $idUser, idWord: $idWord, lastAcess: $lastAcess, favorite: $favorite, user: $user, word: $word)';
   }
 }

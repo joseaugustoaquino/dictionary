@@ -51,9 +51,25 @@ class UserService implements UserInterface {
     if (_db == null) return [];
 
     List<Map<String, dynamic>> result = await _db?.query("users") ?? [];
-    
-    print(result);
+    return result.map((m) => UserModel(
+      id: m["id"],
+      name: m["name"],
+      user: m["user"],
+      password: m["password"],
+    )).toList();
+  }
+  
+  @override
+  Future<UserModel?> getById(int idUser) async {
+    _db = await DBSet.instance.database;
+    if (_db == null) return null;
 
-    return [];
+    List<Map<String, dynamic>> result = await _db?.rawQuery('''
+      SELECT * FROM users
+      WHERE id = ?;
+    ''', [idUser]) ?? [];
+
+
+    return result.isEmpty ? null : UserModel.fromMap(result.first);
   } 
 }
