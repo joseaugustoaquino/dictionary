@@ -3,7 +3,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:dictionary/app/data/models/user_model.dart';
 import 'package:dictionary/app/data/interfaces/user_interface.dart';
 
-class UserService implements UserInterface {
+class UserProvider implements UserInterface {
   Database? _db;
 
   @override

@@ -3,7 +3,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:dictionary/app/data/models/word_model.dart';
 import 'package:dictionary/app/data/interfaces/word_interface.dart';
 
-class WordService implements WordInterface {
+class WordProvider implements WordInterface {
   Database? _db;
   
   @override

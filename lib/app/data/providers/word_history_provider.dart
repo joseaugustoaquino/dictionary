@@ -1,13 +1,13 @@
 import 'package:dictionary/app/data/databases/data_base.dart';
 import 'package:dictionary/app/data/models/user_model.dart';
 import 'package:dictionary/app/data/models/word_model.dart';
-import 'package:dictionary/app/data/services/user_service.dart';
-import 'package:dictionary/app/data/services/word_service.dart';
+import 'package:dictionary/app/data/providers/user_provider.dart';
+import 'package:dictionary/app/data/providers/word_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:dictionary/app/data/models/word_history_model.dart';
 import 'package:dictionary/app/data/interfaces/word_history_interface.dart';
 
-class WordHistoryService implements WordHistoryInterface {
+class WordHistoryProvider implements WordHistoryInterface {
   Database? _db;
 
   @override
@@ -56,8 +56,8 @@ class WordHistoryService implements WordHistoryInterface {
 
     List<Map<String, dynamic>> result = await _db?.query("wordHistory") ?? [];
 
-    List<UserModel> resultUsers = await UserService().get();
-    List<WordModel> resultWords = await WordService().get();
+    List<UserModel> resultUsers = await UserProvider().get();
+    List<WordModel> resultWords = await WordProvider().get();
 
     return result.map((m) => WordHistoryModel(
       id: m["id"],
@@ -91,8 +91,8 @@ class WordHistoryService implements WordHistoryInterface {
 
     List<Map<String, dynamic>> result = await _db?.query("wordHistory") ?? [];
 
-    List<UserModel> resultUsers = await UserService().get();
-    List<WordModel> resultWords = await WordService().get();
+    List<UserModel> resultUsers = await UserProvider().get();
+    List<WordModel> resultWords = await WordProvider().get();
 
     return result.map((m) => WordHistoryModel(
       id: m["id"],
