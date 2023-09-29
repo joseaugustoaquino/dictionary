@@ -12,8 +12,8 @@ class UserProvider implements UserInterface {
     if (_db == null) return false;
 
     int de = await _db?.rawInsert(
-      "INSERT INTO users (name, user, password) VALUES (?,?,?)", 
-      [user.name, user.user, user.password]
+      "INSERT INTO users (name, email, password) VALUES (?,?,?)", 
+      [user.name, user.email, user.password]
     ) ?? 0;
     
     return de != 0;
@@ -25,8 +25,8 @@ class UserProvider implements UserInterface {
     if (_db == null) return false;
 
     int de = await _db?.rawUpdate(
-      "UPDATE users SET name = ?, user = ?, password = ? WHERE id = ?", 
-      [user.name, user.user, user.password, user.id]
+      "UPDATE users SET name = ?, email = ?, password = ? WHERE id = ?", 
+      [user.name, user.email, user.password, user.id]
     ) ?? 0;
     
     return de != 0;
@@ -54,7 +54,7 @@ class UserProvider implements UserInterface {
     return result.map((m) => UserModel(
       id: m["id"],
       name: m["name"],
-      user: m["user"],
+      email: m["email"],
       password: m["password"],
     )).toList();
   }
@@ -71,5 +71,21 @@ class UserProvider implements UserInterface {
 
 
     return result.isEmpty ? null : UserModel.fromMap(result.first);
+  }
+  
+  @override
+  Future<UserModel?> getByEmail(String email) async {
+    _db = await DBSet.instance.database;
+    if (_db == null) return null;
+
+    List<Map<String, dynamic>> result = await _db?.rawQuery('''
+      SELECT * FROM users
+      WHERE email = ?;
+    ''', [email]) ?? [];
+
+
+    return result.isEmpty ? null : UserModel.fromMap(result.first);
   } 
+
+
 }

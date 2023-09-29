@@ -10,4 +10,6 @@ abstract class UserInterface {
   Future<List<UserModel>> get();
 
   Future<UserModel?> getById(int idUser);
+
+  Future<UserModel?> getByEmail(String email);
 }

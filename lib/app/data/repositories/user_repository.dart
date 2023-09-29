@@ -2,7 +2,7 @@ import 'package:dictionary/app/data/models/user_model.dart';
 import 'package:dictionary/app/data/providers/user_provider.dart';
 
 class UserRepository implements UserProvider {
-  final UserRepository provider = UserRepository();
+  final UserProvider provider = UserProvider();
 
   @override
   Future<bool> add(UserModel user) {
@@ -28,5 +28,9 @@ class UserRepository implements UserProvider {
   Future<UserModel?> getById(int idUser) {
     return provider.getById(idUser);
   }
-
+  
+  @override
+  Future<UserModel?> getByEmail(String email) {
+    return provider.getByEmail(email);
+  }
 }
