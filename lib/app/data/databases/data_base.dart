@@ -29,7 +29,7 @@ class DBSet {
     CREATE TABLE IF NOT EXISTS users (
       id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
       name VARCHAR(100) NOT NULL,
-      user VARCHAR(100) NOT NULL,
+      email VARCHAR(100) NOT NULL,
       password VARCHAR(100) NOT NULL
     );
   ''';

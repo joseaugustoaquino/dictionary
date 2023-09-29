@@ -4,14 +4,14 @@ import 'dart:convert';
 class UserModel {
   int? id;
   String name;
-  String user;
+  String email;
   String password;
   
   UserModel({
     this.id,
 
     this.name = "",
-    this.user = "",
+    this.email = "",
     this.password = "",
   });
 
@@ -20,7 +20,7 @@ class UserModel {
       'id': id,
 
       'name': name,
-      'user': user,
+      'email': email,
       'password': password,
     };
   }
@@ -30,7 +30,7 @@ class UserModel {
       id: map['id'],
 
       name: map['name'] ?? "",
-      user: map['user'] ?? "",
+      email: map['email'] ?? "",
       password: map['password'] ?? "",
     );
   }
@@ -41,6 +41,6 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, user: $user, password: $password)';
+    return 'UserModel(id: $id, name: $name, email: $email, password: $password)';
   }
 }
