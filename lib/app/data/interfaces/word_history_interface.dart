@@ -12,4 +12,6 @@ abstract class WordHistoryInterface {
   Future<WordHistoryModel?> getById(int idWordHistory);
 
   Future<List<WordHistoryModel>> getByUser(int idUser);
+
+  Future<WordHistoryModel?> getByWord(int idUser, int idWord);
 }

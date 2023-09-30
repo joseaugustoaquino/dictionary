@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_use_of_protected_member
 
 import 'package:dictionary/app/controllers/words_controller.dart';
+import 'package:dictionary/app/routes/routes.dart';
 import 'package:dictionary/app/widgets/text_form_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -37,25 +38,28 @@ class _WordsViewState extends State<WordsView> {
 
               itemBuilder: (BuildContext context, int index) {
                 var word = _.words.value[index];
-                return Card(
-                  elevation: 5,
-                  color: Colors.white,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          word.description,
-                          overflow: TextOverflow.clip,
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.roboto(
-                            fontWeight: FontWeight.bold,
+                return InkWell(
+                  onTap: () async => await Get.toNamed(Routes.word, arguments: word.id),
+                  child: Card(
+                    elevation: 5,
+                    color: Colors.white,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            word.description,
+                            overflow: TextOverflow.clip,
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.roboto(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 );
               },

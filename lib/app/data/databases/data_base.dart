@@ -46,7 +46,7 @@ class DBSet {
       id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
       idUser INT NOT NULL,
       idWord INT NOT NULL,
-      lastAcess DATETIME NOT NULL,
+      lastAcess TEXT NOT NULL,
       favorite BIT NOT NULL
     );
   ''';

@@ -28,7 +28,6 @@ class WordsController extends GetxController {
 
   @override
   void onInit() async {
-    loading.value = false;
     words.value.clear();
     super.onInit();
   }
@@ -62,17 +61,15 @@ class WordsController extends GetxController {
       if (search.value.text.isNotEmpty) 
       { words.value = words.value.where((w) => w.description.contains(search.value.text)).toList(); }
 
-      return await Future.delayed(const Duration(milliseconds: 1000), () => loading.value = false);
+      return loading.value = false;
     } on Exception catch (_) {
       showSnackBarCustom(_.toString().replaceAll("Exception:", ""));
       printError(info: _.toString());
-      loading.value = false;
-      return;
+      return loading.value = false;
     } catch (_) {
       showSnackBarCustom("Ops, $_");
       printError(info: _.toString());
-      loading.value = false;
-      return;
+      return loading.value = false;
     }
   } 
 

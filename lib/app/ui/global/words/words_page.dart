@@ -1,5 +1,6 @@
 import 'package:dictionary/app/controllers/authentication_controller.dart';
 import 'package:dictionary/app/controllers/words_controller.dart';
+import 'package:dictionary/app/routes/routes.dart';
 import 'package:dictionary/app/ui/global/words/views/favorite_view.dart';
 import 'package:dictionary/app/ui/global/words/views/historic_view.dart';
 import 'package:dictionary/app/ui/global/words/views/words_view.dart';
@@ -44,11 +45,12 @@ class _WordsPageState extends State<WordsPage> {
           ],
         ),
 
-        actions: const [
+        actions: [
           Padding(
-            padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
             child: InkWell(
-              child: Icon(
+              onTap: () async => await Get.toNamed(Routes.settings),
+              child: const Icon(
                 Icons.settings_rounded,
               ),
             ),

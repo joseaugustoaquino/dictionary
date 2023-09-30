@@ -34,4 +34,9 @@ class WordHistoryRepository implements WordHistoryProvider {
     return provider.getByUser(idUser);
   }
   
+  @override
+  Future<WordHistoryModel?> getByWord(int idUser, int idWord) {
+    return provider.getByWord(idUser, idWord);
+  }
+  
 }

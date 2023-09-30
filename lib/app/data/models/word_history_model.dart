@@ -8,8 +8,8 @@ class WordHistoryModel {
   int? id;
   int? idUser;
   int? idWord;
-  String lastAcess;
-  String favorite;
+  DateTime? lastAcess;
+  bool favorite;
 
   /// Not Map
   UserModel? user;
@@ -19,8 +19,8 @@ class WordHistoryModel {
     this.id,
     this.idUser,
     this.idWord,
-    this.lastAcess = "",
-    this.favorite = "",
+    this.lastAcess,
+    this.favorite = false,
     this.user,
     this.word,
   });
@@ -30,7 +30,7 @@ class WordHistoryModel {
       'id': id,
       'idUser': idUser,
       'idWord': idWord,
-      'lastAcess': lastAcess,
+      'lastAcess': lastAcess.toString(),
       'favorite': favorite,
       'user': user?.toMap(),
       'word': word?.toMap(),
@@ -43,8 +43,8 @@ class WordHistoryModel {
       idUser: map['idUser'],
       idWord: map['idWord'],
       
-      lastAcess: map['lastAcess'] ?? "",
-      favorite: map['favorite'] ?? "",
+      lastAcess: map['lastAcess'] == null ? DateTime.now() : DateTime.parse(map['lastAcess'] as String),
+      favorite: map['favorite'] ?? false,
 
       user: map['user'] != null ? UserModel.fromMap(map['user'] as Map<String,dynamic>) : null,
       word: map['word'] != null ? WordModel.fromMap(map['word'] as Map<String,dynamic>) : null,

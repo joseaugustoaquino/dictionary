@@ -17,7 +17,7 @@ class WordHistoryProvider implements WordHistoryInterface {
 
     int de = await _db?.rawInsert(
       "INSERT INTO wordHistory (idUser, idWord, lastAcess, favorite) VALUES (?,?,?,?)", 
-      [wordHistory.idUser , wordHistory.idWord , wordHistory.lastAcess , wordHistory.favorite]
+      [wordHistory.idUser , wordHistory.idWord , wordHistory.lastAcess.toString() , wordHistory.favorite]
     ) ?? 0;
     
     return de != 0;
@@ -80,7 +80,6 @@ class WordHistoryProvider implements WordHistoryInterface {
       WHERE id = ?;
     ''', [idWordHistory]) ?? [];
 
-
     return result.isEmpty ? null : WordHistoryModel.fromMap(result.first);
   }
   
@@ -98,11 +97,34 @@ class WordHistoryProvider implements WordHistoryInterface {
       id: m["id"],
       idUser: m['idUser'], 
       idWord: m['idWord'], 
-      lastAcess: m['lastAcess'], 
+      lastAcess: m['lastAcess'] == null ? DateTime.now() : DateTime.parse(m['lastAcess'] as String), 
       favorite: m['favorite'], 
       user: resultUsers.singleWhere((s) => s.id == m['idUser'], orElse: () => UserModel()), 
       word: resultWords.singleWhere((s) => s.id == m['idWord'], orElse: () => WordModel()),
     )).where((w) => w.idUser == idUser).toList();
+  }
+  
+  @override
+  Future<WordHistoryModel?> getByWord(int idUser, int idWord) async {
+    _db = await DBSet.instance.database;
+    if (_db == null) return null;
+
+    List<Map<String, dynamic>> result = await _db?.query("wordHistory") ?? [];
+
+    List<UserModel> resultUsers = await UserProvider().get();
+    List<WordModel> resultWords = await WordProvider().get();
+
+    return result.map((m) => WordHistoryModel(
+      id: m["id"],
+      idUser: m['idUser'], 
+      idWord: m['idWord'], 
+      lastAcess: m['lastAcess'] == null ? DateTime.now() : DateTime.parse(m['lastAcess'] as String), 
+      favorite: m['favorite'], 
+      user: resultUsers.singleWhere((s) => s.id == m['idUser'], orElse: () => UserModel()), 
+      word: resultWords.singleWhere((s) => s.id == m['idWord'], orElse: () => WordModel()),
+    )).singleWhere((s) => s.idUser == idUser && s.idWord == idWord, orElse: () => WordHistoryModel());
   } 
+
+
 
 }
