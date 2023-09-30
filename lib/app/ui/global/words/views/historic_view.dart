@@ -38,8 +38,11 @@ class _HistoricViewState extends State<HistoricView> {
               itemBuilder: (BuildContext context, int index) {
                 var word = _.history.value[index];
 
+                if (word.word?.id == null) 
+                { return const SizedBox(); }
+
                 return InkWell(
-                  onTap: () async => await Get.toNamed(Routes.word, arguments: word.id),
+                  onTap: () async => await Get.toNamed(Routes.word, arguments: word.word!.id!),
                   child: Card(
                     elevation: 5,
                     color: Colors.white,
