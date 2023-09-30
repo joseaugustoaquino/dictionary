@@ -1,4 +1,4 @@
-import 'package:dictionary/app/controllers/authentication_controller.dart';
+import 'package:dictionary/app/controllers/storage/authentication_controller.dart';
 import 'package:dictionary/app/controllers/words_controller.dart';
 import 'package:dictionary/app/routes/routes.dart';
 import 'package:dictionary/app/ui/global/words/views/favorite_view.dart';

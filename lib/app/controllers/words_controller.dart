@@ -2,7 +2,9 @@
 
 import 'dart:convert';
 
+import 'package:dictionary/app/controllers/storage/authentication_controller.dart';
 import 'package:dictionary/app/data/models/word_model.dart';
+import 'package:dictionary/app/data/repositories/word_history_repository.dart';
 import 'package:dictionary/app/data/repositories/word_repository.dart';
 import 'package:dictionary/app/widgets/snack_bar_custom.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +22,8 @@ class WordsController extends GetxController {
   static WordsController get to => Get.find();  
 
   final WordRepository _wordRep = WordRepository();
+  final WordHistoryRepository _wordHistoriyRep = WordHistoryRepository();
+  final AuthenticationController _authenticationCon = AuthenticationController();
 
   var loading = RxBool(true);
   var page = Rx(Pages.words);

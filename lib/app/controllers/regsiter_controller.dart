@@ -1,4 +1,4 @@
-import 'package:dictionary/app/controllers/authentication_controller.dart';
+import 'package:dictionary/app/controllers/storage/authentication_controller.dart';
 import 'package:dictionary/app/data/models/user_model.dart';
 import 'package:dictionary/app/data/repositories/user_repository.dart';
 import 'package:dictionary/app/routes/routes.dart';

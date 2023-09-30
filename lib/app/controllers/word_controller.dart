@@ -1,4 +1,4 @@
-import 'package:dictionary/app/controllers/authentication_controller.dart';
+import 'package:dictionary/app/controllers/storage/authentication_controller.dart';
 import 'package:dictionary/app/data/models/word_history_model.dart';
 import 'package:dictionary/app/data/models/word_model.dart';
 import 'package:dictionary/app/data/repositories/word_history_repository.dart';

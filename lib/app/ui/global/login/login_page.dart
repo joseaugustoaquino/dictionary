@@ -1,5 +1,5 @@
 import 'package:dictionary/app/controllers/login_controller.dart';
-import 'package:dictionary/app/controllers/authentication_controller.dart';
+import 'package:dictionary/app/controllers/storage/authentication_controller.dart';
 import 'package:dictionary/app/routes/routes.dart';
 import 'package:dictionary/app/widgets/text_form_custom.dart';
 import 'package:flutter/material.dart';

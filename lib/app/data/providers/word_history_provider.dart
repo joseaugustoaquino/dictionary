@@ -30,7 +30,7 @@ class WordHistoryProvider implements WordHistoryInterface {
 
     int de = await _db?.rawUpdate(
       "UPDATE wordHistory SET idUser = ?, idWord = ?, lastAcess = ?, favorite = ? WHERE id = ?", 
-      [wordHistory.idUser , wordHistory.idWord , wordHistory.lastAcess , wordHistory.favorite, wordHistory.id]
+      [wordHistory.idUser , wordHistory.idWord , wordHistory.lastAcess.toString(), wordHistory.favorite, wordHistory.id]
     ) ?? 0;
     
     return de != 0;
@@ -98,7 +98,7 @@ class WordHistoryProvider implements WordHistoryInterface {
       idUser: m['idUser'], 
       idWord: m['idWord'], 
       lastAcess: m['lastAcess'] == null ? DateTime.now() : DateTime.parse(m['lastAcess'] as String), 
-      favorite: m['favorite'], 
+      favorite: m['favorite'] == 0 ? false : true, 
       user: resultUsers.singleWhere((s) => s.id == m['idUser'], orElse: () => UserModel()), 
       word: resultWords.singleWhere((s) => s.id == m['idWord'], orElse: () => WordModel()),
     )).where((w) => w.idUser == idUser).toList();
@@ -119,12 +119,10 @@ class WordHistoryProvider implements WordHistoryInterface {
       idUser: m['idUser'], 
       idWord: m['idWord'], 
       lastAcess: m['lastAcess'] == null ? DateTime.now() : DateTime.parse(m['lastAcess'] as String), 
-      favorite: m['favorite'], 
+      favorite: m['favorite'] == 0 ? false : true, 
       user: resultUsers.singleWhere((s) => s.id == m['idUser'], orElse: () => UserModel()), 
       word: resultWords.singleWhere((s) => s.id == m['idWord'], orElse: () => WordModel()),
     )).singleWhere((s) => s.idUser == idUser && s.idWord == idWord, orElse: () => WordHistoryModel());
   } 
-
-
 
 }
