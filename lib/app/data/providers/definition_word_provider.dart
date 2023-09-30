@@ -8,13 +8,13 @@ class DefinitionWordProvider implements DefinitionWordInterface {
   static const String _headerKey = "X-RapidAPI-Key";
 
   @override
-  Future<DefinitionWordsModel?> get(String word) async {
+  Future<DefinitionWordModel?> get(String word) async {
     var result = await Dio(BaseOptions(
       headers: { _headerKey: _apiKey }
     )).get('$_urlBase/words/$word');
 
     if (result.statusCode == 200 && result.data != null) {
-      var convert = DefinitionWordsModel.fromMap(result.data);
+      var convert = DefinitionWordModel.fromMap(result.data);
       return convert;
     } else {
       return null;

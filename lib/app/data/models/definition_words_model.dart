@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-class DefinitionWordsModel {
+class DefinitionWordModel {
   String? word;
   double? frequency;
 
@@ -9,7 +9,7 @@ class DefinitionWordsModel {
   PronunciationModel? pronunciation;
 
   List<ResultModel>? results;
-  DefinitionWordsModel({
+  DefinitionWordModel({
     this.word,
     this.frequency,
     this.syllables,
@@ -28,8 +28,8 @@ class DefinitionWordsModel {
     };
   }
 
-  factory DefinitionWordsModel.fromMap(Map<String, dynamic> map) {
-    return DefinitionWordsModel(
+  static DefinitionWordModel fromMap(Map<String, dynamic> map) {
+    return DefinitionWordModel(
       word: map['word'],
       frequency: map['frequency'],
 

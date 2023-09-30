@@ -5,7 +5,7 @@ class DefinitionWordRepository implements DefinitionWordProvider {
   final DefinitionWordProvider provider = DefinitionWordProvider();
   
   @override
-  Future<DefinitionWordsModel?> get(String word) {
+  Future<DefinitionWordModel?> get(String word) {
     return provider.get(word);
   }
 }

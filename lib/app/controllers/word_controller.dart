@@ -1,6 +1,8 @@
 import 'package:dictionary/app/controllers/storage/authentication_controller.dart';
+import 'package:dictionary/app/data/models/definition_words_model.dart';
 import 'package:dictionary/app/data/models/word_history_model.dart';
 import 'package:dictionary/app/data/models/word_model.dart';
+import 'package:dictionary/app/data/repositories/definition_word_repository.dart';
 import 'package:dictionary/app/data/repositories/word_history_repository.dart';
 import 'package:dictionary/app/data/repositories/word_repository.dart';
 import 'package:dictionary/app/widgets/snack_bar_custom.dart';
@@ -12,9 +14,11 @@ class WordController extends GetxController {
   final WordRepository _wordRep = WordRepository();
   final WordHistoryRepository _wordHistoryRep = WordHistoryRepository();
   final AuthenticationController _authenticationCon = AuthenticationController();
+  final DefinitionWordRepository _definitionWordRep = DefinitionWordRepository();
 
   var loading = RxBool(true);
   var word = Rx(WordHistoryModel());
+  var wordDefinition = Rx(DefinitionWordModel());
 
   @override
   void onReady() async {
@@ -59,10 +63,11 @@ class WordController extends GetxController {
         )) ?? WordHistoryModel();
       }
 
-      if (word.value.id == null) {
-        throw Exception("Ops, Word not found!");
-      } else {
+      if (word.value.id != null) {
+        wordDefinition.value = await getDefinitationWord(word.value.word?.description ?? "") ?? DefinitionWordModel(); 
         return loading.value = false;
+      } else {
+        throw Exception("Ops, Word not found!");
       }
     } on Exception catch (_) {
       showSnackBarCustom(_.toString().replaceAll("Exception:", ""));
@@ -74,6 +79,26 @@ class WordController extends GetxController {
       return loading.value = false;
     }
   } 
+
+  Future<DefinitionWordModel?> getDefinitationWord(String word) async {
+    try {
+      var result = await _definitionWordRep.get(word);
+
+      if (result != null) {
+        return result;
+      } else {
+        throw Exception("Ops, Failed to query definitions!");
+      }
+    } on Exception catch (_) {
+      showSnackBarCustom(_.toString().replaceAll("Exception:", ""));
+      printError(info: _.toString());
+      return null;
+    } catch (_) {
+      showSnackBarCustom("Ops, $_");
+      printError(info: _.toString());
+      return null;
+    }
+  }
 
   Future<WordHistoryModel?> updateWord(WordHistoryModel wordHistory) async {
     try {
