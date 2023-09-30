@@ -41,6 +41,7 @@ class WordController extends GetxController {
       if (wordHistoric.id != null && wordHistoric.word != null) {
         wordHistoric.lastAcess = DateTime.now();
         word.value = wordHistoric; 
+        await updateWord(word.value);
       } else {
         var wordSave = await _wordRep.getById(idWord) ?? WordModel();
 

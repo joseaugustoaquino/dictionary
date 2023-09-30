@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:dictionary/app/controllers/storage/authentication_controller.dart';
+import 'package:dictionary/app/data/models/word_history_model.dart';
 import 'package:dictionary/app/data/models/word_model.dart';
 import 'package:dictionary/app/data/repositories/word_history_repository.dart';
 import 'package:dictionary/app/data/repositories/word_repository.dart';
@@ -27,22 +28,28 @@ class WordsController extends GetxController {
 
   var loading = RxBool(true);
   var page = Rx(Pages.words);
-  var words = RxList([WordModel()]);
   var search = Rx(TextEditingController());
+
+  var words = RxList([WordModel()]);
+  var history = RxList([WordHistoryModel()]);
+  var favorite = RxList([WordHistoryModel()]);
 
   @override
   void onInit() async {
     words.value.clear();
+    history.value.clear();
+    favorite.value.clear();
     super.onInit();
   }
 
   @override
   void onReady() async {
-    await get();
+    await getWords();
     super.onReady();
   }
 
-  Future get() async {
+  /// DATA
+  Future getWords() async {
     try {
       loading.value = true;
       words.value = await _wordRep.get();
@@ -77,4 +84,85 @@ class WordsController extends GetxController {
     }
   } 
 
+  Future getHistory() async {
+    try {
+      loading.value = true;
+
+      if (_authenticationCon.user.id == null) {
+        throw Exception("Ops, Unauthorized user!");
+      }
+
+      var result = await _wordHistoriyRep.getByUser(_authenticationCon.user.id!);
+
+      if (result.isNotEmpty) {
+        history.value = result;
+        history.value.sort((a, b) => (b.lastAcess ?? DateTime.now()).compareTo(a.lastAcess ?? DateTime.now()));
+        return loading.value = false;
+      } else {
+        throw Exception("Ops, No history found!");
+      }
+    } on Exception catch (_) {
+      showSnackBarCustom(_.toString().replaceAll("Exception:", ""));
+      printError(info: _.toString());
+      return loading.value = false;
+    } catch (_) {
+      showSnackBarCustom("Ops, $_");
+      printError(info: _.toString());
+      return loading.value = false;
+    }
+  } 
+
+  Future getFavotire() async {
+    try {
+      loading.value = true;
+
+      if (_authenticationCon.user.id == null) {
+        throw Exception("Ops, Unauthorized user!");
+      }
+
+      var result = await _wordHistoriyRep.getByUser(_authenticationCon.user.id!);
+
+      if (result.isNotEmpty) {
+        favorite.value = result.where((w) => w.favorite).toList();
+        favorite.value.sort((a, b) => (b.lastAcess ?? DateTime.now()).compareTo(a.lastAcess ?? DateTime.now()));
+        return loading.value = false;
+      } else {
+        throw Exception("Ops, No history found!");
+      }
+    } on Exception catch (_) {
+      showSnackBarCustom(_.toString().replaceAll("Exception:", ""));
+      printError(info: _.toString());
+      return loading.value = false;
+    } catch (_) {
+      showSnackBarCustom("Ops, $_");
+      printError(info: _.toString());
+      return loading.value = false;
+    }
+  } 
+
+  /// FUNCTIONS
+  void changePage(Pages value) async {
+    if (loading.value) {
+      showSnackBarCustom("Ops, Wait for loading!");
+      return;
+    } 
+
+    page.value = value;
+    switch (page.value) {
+      case Pages.words: 
+        await getWords();
+        break;
+
+      case Pages.historic:
+        await getHistory();
+        break;
+
+      case Pages.favorite:
+        await getFavotire();
+        break;
+
+      default:
+        return;
+    }
+  }
 }

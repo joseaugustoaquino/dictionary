@@ -75,11 +75,11 @@ class _WordsPageState extends State<WordsPage> {
         unselectedItemColor: Colors.black,
         selectedItemColor: Get.theme.primaryColor,
 
-        onTap: (index) async => _.page.value = [
+        onTap: (index) async => _.changePage([
           Pages.words,
           Pages.historic,
           Pages.favorite,
-        ][index],
+        ][index]),
 
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

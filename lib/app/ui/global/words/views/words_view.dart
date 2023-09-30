@@ -1,5 +1,4 @@
 // ignore_for_file: invalid_use_of_protected_member
-
 import 'package:dictionary/app/controllers/words_controller.dart';
 import 'package:dictionary/app/routes/routes.dart';
 import 'package:dictionary/app/widgets/text_form_custom.dart';
@@ -88,7 +87,7 @@ class _WordsViewState extends State<WordsView> {
             color: Get.theme.primaryColor,
           ),
 
-          onPressed: () async => await _.get(),
+          onPressed: () async => _.getWords(),
         ),
       ),
     );
