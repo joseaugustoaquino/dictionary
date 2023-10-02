@@ -1,4 +1,4 @@
-import 'package:dictionary/app/controllers/storage/authentication_controller.dart';
+import 'package:dictionary/app/data/services/authentication_service.dart';
 import 'package:dictionary/app/data/repositories/user_repository.dart';
 import 'package:dictionary/app/routes/routes.dart';
 import 'package:dictionary/app/widgets/snack_bar_custom.dart';
@@ -10,7 +10,7 @@ class LoginController extends GetxController {
   static LoginController get to => Get.find();
   
   final UserRepository _userRep = UserRepository();
-  final AuthenticationController _authCon = AuthenticationController();
+  final AuthenticationService _authServ = AuthenticationService();
 
   var loading = RxBool(true);
   var textEmail = Rx(TextEditingController());
@@ -20,9 +20,9 @@ class LoginController extends GetxController {
   void onInit() async {
     loading.value = false;
 
-    if (_authCon.toRemember) {
-      textEmail.value.text = _authCon.user.email;
-      textPassword.value.text = _authCon.user.password;
+    if (_authServ.toRemember) {
+      textEmail.value.text = _authServ.user.email;
+      textPassword.value.text = _authServ.user.password;
     }
     
     super.onInit();
@@ -42,7 +42,7 @@ class LoginController extends GetxController {
         if (result.password != textPassword.value.text) 
         { throw Exception("Ops, Incorrect password.");}
 
-        _authCon.changeUser = result;
+        _authServ.changeUser = result;
         Get.offAndToNamed(Routes.words);
 
         showSnackBarCustom("Uhull, Login successfully!");

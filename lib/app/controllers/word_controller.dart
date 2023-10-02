@@ -1,4 +1,4 @@
-import 'package:dictionary/app/controllers/storage/authentication_controller.dart';
+import 'package:dictionary/app/data/services/authentication_service.dart';
 import 'package:dictionary/app/data/models/definition_words_model.dart';
 import 'package:dictionary/app/data/models/word_history_model.dart';
 import 'package:dictionary/app/data/models/word_model.dart';
@@ -15,8 +15,8 @@ class WordController extends GetxController {
 
   final FlutterTts flutterTts = FlutterTts();
   final WordRepository _wordRep = WordRepository();
+  final AuthenticationService _authServ = AuthenticationService();
   final WordHistoryRepository _wordHistoryRep = WordHistoryRepository();
-  final AuthenticationController _authenticationCon = AuthenticationController();
   final DefinitionWordRepository _definitionWordRep = DefinitionWordRepository();
 
   var loading = RxBool(true);
@@ -50,11 +50,11 @@ class WordController extends GetxController {
     try {
       loading.value = true;
 
-      if (_authenticationCon.user.id == null) {
+      if (_authServ.user.id == null) {
         throw Exception("Ops, Unauthorized user!");
       }
 
-      var wordHistoric = await _wordHistoryRep.getByWord(_authenticationCon.user.id!, idWord) ?? WordHistoryModel();
+      var wordHistoric = await _wordHistoryRep.getByWord(_authServ.user.id!, idWord) ?? WordHistoryModel();
 
       if (wordHistoric.id != null && wordHistoric.word != null) {
         wordHistoric.lastAcess = DateTime.now();
@@ -68,11 +68,11 @@ class WordController extends GetxController {
         } 
 
         word.value = await addWord(WordHistoryModel(
-          idUser: _authenticationCon.user.id,
+          idUser: _authServ.user.id,
           idWord: wordSave.id,
           lastAcess: DateTime.now(),
           favorite: false,
-          user: _authenticationCon.user,
+          user: _authServ.user,
           word: wordSave,
         )) ?? WordHistoryModel();
       }

@@ -1,4 +1,4 @@
-import 'package:dictionary/app/controllers/storage/authentication_controller.dart';
+import 'package:dictionary/app/data/services/authentication_service.dart';
 import 'package:dictionary/app/controllers/regsiter_controller.dart';
 import 'package:dictionary/app/routes/routes.dart';
 import 'package:dictionary/app/widgets/text_form_custom.dart';
@@ -18,7 +18,7 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   final RegisterController _ = Get.put(RegisterController());
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
-  final AuthenticationController _auth = Get.put(AuthenticationController());
+  final AuthenticationService _authServ = Get.put(AuthenticationService());
   
   @override
   Widget build(BuildContext context) {
@@ -111,7 +111,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
           
                 GestureDetector(
-                  onTap: () => setState(() => _auth.changeToRemeber = !_auth.toRemember),
+                  onTap: () => setState(() => _authServ.changeToRemeber = !_authServ.toRemember),
                   child: Container(
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     child: Row(
@@ -121,12 +121,12 @@ class _RegisterPageState extends State<RegisterPage> {
                           width: 24,
                           child: Checkbox(
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                            value: _auth.toRemember,
-                            onChanged: (v) => setState(() => _auth.changeToRemeber = !_auth.toRemember),
+                            value: _authServ.toRemember,
+                            onChanged: (v) => setState(() => _authServ.changeToRemeber = !_authServ.toRemember),
                           ),
                         ),
                         InkWell(
-                          onTap: () => setState(() => _auth.changeToRemeber = !_auth.toRemember),
+                          onTap: () => setState(() => _authServ.changeToRemeber = !_authServ.toRemember),
                           child: Container(
                             padding: const EdgeInsets.only(left: 16),
                             child: Text(

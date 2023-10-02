@@ -141,7 +141,7 @@ class _WordViewState extends State<WordView> {
             const SizedBox(height: 20),
             
             /// Card Syllables
-            Card(
+            _.wordDefinition.value.syllables == null ? const SizedBox() : Card(
               elevation: 5,
               child: ListTile(
                 title: Text(
@@ -161,7 +161,7 @@ class _WordViewState extends State<WordView> {
             const SizedBox(height: 15),
             
             /// Card Syllables
-            Card(
+            wordDefinition == null ? const SizedBox() : Card(
               elevation: 5,
               child: ListTile(
                 title: Text(
@@ -175,29 +175,29 @@ class _WordViewState extends State<WordView> {
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 10),
+                    SizedBox(height: wordDefinition.partOfSpeech == null ? 0 : 10),
 
-                    title("Part Of Speech: ", wordDefinition?.partOfSpeech ?? ""),
+                    title("Part Of Speech: ", wordDefinition.partOfSpeech ?? ""),
 
-                    const SizedBox(height: 10),
+                    SizedBox(height: wordDefinition.partOfSpeech == null ? 0 : 10),
 
-                    title("TypeOf: ", wordDefinition?.typeOf?.join(", ") ?? ""),
+                    title("TypeOf: ", wordDefinition.typeOf?.join(", ") ?? ""),
 
-                    SizedBox(height: wordDefinition?.hasTypes == null ? 0 : 10),
+                    SizedBox(height: wordDefinition.hasTypes == null ? 0 : 10),
 
-                    title("Has Types: ", wordDefinition?.hasTypes?.join(", ") ?? ""),
+                    title("Has Types: ", wordDefinition.hasTypes?.join(", ") ?? ""),
 
-                    SizedBox(height: wordDefinition?.derivation == null ? 0 : 10),
+                    SizedBox(height: wordDefinition.derivation == null ? 0 : 10),
 
-                    title("Derivation: ", wordDefinition?.derivation?.join(", ") ?? ""),
+                    title("Derivation: ", wordDefinition.derivation?.join(", ") ?? ""),
 
-                    SizedBox(height: wordDefinition?.synonyms == null ? 0 : 10),
+                    SizedBox(height: wordDefinition.synonyms == null ? 0 : 10),
 
-                    title("Synonyms: ", wordDefinition?.synonyms?.join(", ") ?? ""),
+                    title("Synonyms: ", wordDefinition.synonyms?.join(", ") ?? ""),
 
-                    const SizedBox(height: 15),
+                    SizedBox(height: _.wordDefinition.value.results == null ? 0 :15),
 
-                    Text(
+                    _.wordDefinition.value.results == null ? const SizedBox() : Text(
                       "Definitions".toUpperCase(),
                       style: GoogleFonts.roboto(
                         color: Colors.black,
@@ -234,9 +234,7 @@ class _WordViewState extends State<WordView> {
   }
 
   Widget title(String title, String result) {
-    if (result.isEmpty) {
-      return const SizedBox();
-    }
+    if (result.isEmpty) { return const SizedBox(); }
 
     return Row(
       children: [

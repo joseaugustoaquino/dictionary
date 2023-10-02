@@ -2,7 +2,7 @@
 
 import 'dart:convert';
 
-import 'package:dictionary/app/controllers/storage/authentication_controller.dart';
+import 'package:dictionary/app/data/services/authentication_service.dart';
 import 'package:dictionary/app/data/models/word_history_model.dart';
 import 'package:dictionary/app/data/models/word_model.dart';
 import 'package:dictionary/app/data/repositories/word_history_repository.dart';
@@ -22,8 +22,8 @@ class WordsController extends GetxController {
   static WordsController get to => Get.find();  
 
   final WordRepository _wordRep = WordRepository();
+  final AuthenticationService _authServ = AuthenticationService();
   final WordHistoryRepository _wordHistoriyRep = WordHistoryRepository();
-  final AuthenticationController _authenticationCon = AuthenticationController();
 
   var loading = RxBool(true);
   var page = Rx(Pages.words);
@@ -87,11 +87,11 @@ class WordsController extends GetxController {
     try {
       loading.value = true;
 
-      if (_authenticationCon.user.id == null) {
+      if (_authServ.user.id == null) {
         throw Exception("Ops, Unauthorized user!");
       }
 
-      var result = await _wordHistoriyRep.getByUser(_authenticationCon.user.id!);
+      var result = await _wordHistoriyRep.getByUser(_authServ.user.id!);
 
       if (result.isNotEmpty) {
         history.value = result;
@@ -115,11 +115,11 @@ class WordsController extends GetxController {
     try {
       loading.value = true;
 
-      if (_authenticationCon.user.id == null) {
+      if (_authServ.user.id == null) {
         throw Exception("Ops, Unauthorized user!");
       }
 
-      var result = await _wordHistoriyRep.getByUser(_authenticationCon.user.id!);
+      var result = await _wordHistoriyRep.getByUser(_authServ.user.id!);
 
       if (result.isNotEmpty) {
         favorite.value = result.where((w) => w.favorite).toList();

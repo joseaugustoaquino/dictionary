@@ -1,4 +1,4 @@
-import 'package:dictionary/app/controllers/storage/authentication_controller.dart';
+import 'package:dictionary/app/data/services/authentication_service.dart';
 import 'package:dictionary/app/data/models/user_model.dart';
 import 'package:dictionary/app/data/repositories/user_repository.dart';
 import 'package:dictionary/app/routes/routes.dart';
@@ -11,7 +11,7 @@ class RegisterController extends GetxController {
   static RegisterController get to => Get.find();
   
   final UserRepository _userRep = UserRepository();
-  final AuthenticationController _authCon = AuthenticationController();
+  final AuthenticationService _authServ = AuthenticationService();
   
   var loading = RxBool(true);
   var textName = Rx(TextEditingController());
@@ -47,7 +47,7 @@ class RegisterController extends GetxController {
       ));
 
       if (result) {
-        _authCon.changeUser = await _userRep.getByEmail(textEmail.value.text) ?? UserModel();
+        _authServ.changeUser = await _userRep.getByEmail(textEmail.value.text) ?? UserModel();
         Get.offAndToNamed(Routes.words);
 
         showSnackBarCustom("Uhull, Login successfully!");

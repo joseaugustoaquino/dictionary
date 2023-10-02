@@ -1,4 +1,4 @@
-import 'package:dictionary/app/controllers/storage/authentication_controller.dart';
+import 'package:dictionary/app/data/services/authentication_service.dart';
 import 'package:dictionary/app/controllers/words_controller.dart';
 import 'package:dictionary/app/routes/routes.dart';
 import 'package:dictionary/app/ui/global/words/views/favorite_view.dart';
@@ -18,7 +18,7 @@ class WordsPage extends StatefulWidget {
 
 class _WordsPageState extends State<WordsPage> {
   final WordsController _ = Get.put(WordsController());
-  final AuthenticationController _auth = Get.put(AuthenticationController());
+  final AuthenticationService _authServ = Get.put(AuthenticationService());
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class _WordsPageState extends State<WordsPage> {
 
             Expanded(
               child: Text(
-                _auth.user.name,
+                _authServ.user.name,
                 overflow: TextOverflow.ellipsis,
                 style: GoogleFonts.roboto(),
               ),

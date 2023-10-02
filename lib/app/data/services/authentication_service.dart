@@ -2,7 +2,7 @@ import 'package:dictionary/app/data/models/user_model.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-class AuthenticationController extends GetxController {
+class AuthenticationService extends GetxController {
   final GetStorage _box = GetStorage();
 
   bool get toRemember => _box.read("toRemember") ?? false;
