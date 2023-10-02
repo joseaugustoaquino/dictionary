@@ -44,6 +44,8 @@ class WordDefinitionModel {
   }
 
   String toJson() => json.encode(toMap());
+
+  factory WordDefinitionModel.fromJson(String source) => WordDefinitionModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }
 
 class SyllablesModel {
@@ -71,6 +73,8 @@ class SyllablesModel {
   }
 
   String toJson() => json.encode(toMap());
+
+  factory SyllablesModel.fromJson(String source) => SyllablesModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }
 
 class PronunciationModel {
@@ -93,6 +97,8 @@ class PronunciationModel {
   }
 
   String toJson() => json.encode(toMap());
+
+  factory PronunciationModel.fromJson(String source) => PronunciationModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }
 
 class ResultModel {
@@ -143,4 +149,6 @@ class ResultModel {
   }
 
   String toJson() => json.encode(toMap());
+
+  factory ResultModel.fromJson(String source) => ResultModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }

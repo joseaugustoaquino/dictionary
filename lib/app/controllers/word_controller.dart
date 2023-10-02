@@ -5,6 +5,7 @@ import 'package:dictionary/app/data/models/word_model.dart';
 import 'package:dictionary/app/data/repositories/word_definition_repository.dart';
 import 'package:dictionary/app/data/repositories/word_history_repository.dart';
 import 'package:dictionary/app/data/repositories/word_repository.dart';
+import 'package:dictionary/app/data/services/word_service.dart';
 import 'package:dictionary/app/widgets/snack_bar_custom.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get/get.dart';
@@ -14,6 +15,7 @@ class WordController extends GetxController {
   
 
   final FlutterTts flutterTts = FlutterTts();
+  final WordService _wordServ = WordService();
   final WordRepository _wordRep = WordRepository();
   final AuthenticationService _authServ = AuthenticationService();
   final WordHistoryRepository _wordHistoryRep = WordHistoryRepository();
@@ -96,12 +98,19 @@ class WordController extends GetxController {
 
   Future<WordDefinitionModel?> getWordDefinitation(String word) async {
     try {
-      var result = await _definitionWordRep.get(word);
+      var definitions = _wordServ.wordDefinition;
+      WordDefinitionModel? result = definitions.singleWhere((w) => w.word == word, orElse: () => WordDefinitionModel());
 
-      if (result != null) {
-        return result;
+      if (result.word == null) {
+        result = await _definitionWordRep.get(word);
+
+        if (result != null) {
+          return result;
+        } else {
+          throw Exception("Ops, word not found in the dictionary!");
+        }
       } else {
-        throw Exception("Ops, word not found in the dictionary!");
+        return result;
       }
     } on Exception catch (_) {
       showSnackBarCustom(_.toString().replaceAll("Exception:", ""));
