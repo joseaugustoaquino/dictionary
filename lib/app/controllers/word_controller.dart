@@ -87,7 +87,7 @@ class WordController extends GetxController {
       if (result != null) {
         return result;
       } else {
-        throw Exception("Ops, Failed to query definitions!");
+        throw Exception("Ops, word not found in the dictionary!");
       }
     } on Exception catch (_) {
       showSnackBarCustom(_.toString().replaceAll("Exception:", ""));

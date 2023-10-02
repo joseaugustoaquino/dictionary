@@ -46,7 +46,7 @@ class DefinitionWordModel {
 }
 
 class SyllablesModel {
-  double? count;
+  int? count;
   List<String>? list;
 
   SyllablesModel({
@@ -65,7 +65,7 @@ class SyllablesModel {
     return SyllablesModel(
       count: map['count'],
       list: map['list'] != null
-        ? List<String>.from((map['list'] as List<String>)) : null,
+        ? List<String>.from((map['list'] as List<dynamic>)) : null,
     );
   }
 
@@ -125,13 +125,13 @@ class ResultModel {
       partOfSpeech: map['partOfSpeech'],
 
       typeOf: map['typeOf'] != null 
-        ? List<String>.from((map['typeOf'] as List<String>)) : null,
+        ? List<String>.from((map['typeOf'] as List<dynamic>)) : null,
       
       hasTypes: map['hasTypes'] != null 
-        ? List<String>.from((map['hasTypes'] as List<String>)) : null,
+        ? List<String>.from((map['hasTypes'] as List<dynamic>)) : null,
       
       derivation: map['derivation'] != null 
-        ? List<String>.from((map['derivation'] as List<String>)) : null,
+        ? List<String>.from((map['derivation'] as List<dynamic>)) : null,
     );
   }
 

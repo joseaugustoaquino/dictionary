@@ -18,7 +18,6 @@ enum Pages {
   favorite, // 2
 }
 
-
 class WordsController extends GetxController {
   static WordsController get to => Get.find();  
 
