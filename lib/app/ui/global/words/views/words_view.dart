@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_use_of_protected_member
 import 'package:dictionary/app/controllers/words_controller.dart';
 import 'package:dictionary/app/routes/routes.dart';
+import 'package:dictionary/app/widgets/snack_bar_custom.dart';
 import 'package:dictionary/app/widgets/text_form_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -38,7 +39,16 @@ class _WordsViewState extends State<WordsView> {
               itemBuilder: (BuildContext context, int index) {
                 var word = _.words.value[index];
                 return InkWell(
-                  onTap: () async => await Get.toNamed(Routes.word, arguments: word.id),
+                  onTap: () async {
+                    var wordNew = await _.addWord(description: word.description);
+                    
+                    if (wordNew == null) {
+                      showSnackBarCustom("Ops, Failed to add word!");
+                      return;
+                    }
+
+                    return await Get.toNamed(Routes.word, arguments: wordNew.id);
+                  },
                   child: Card(
                     elevation: 5,
                     color: Colors.white,

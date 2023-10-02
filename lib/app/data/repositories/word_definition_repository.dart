@@ -5,7 +5,7 @@ class WordDefinitionRepository implements WordDefinitionProvider {
   final WordDefinitionProvider provider = WordDefinitionProvider();
   
   @override
-  Future<WordDefinitionModel?> get(String word) {
-    return provider.get(word);
+  Future<WordDefinitionModel?> get(String word) async {
+    return await provider.get(word);
   }
 }

@@ -5,32 +5,32 @@ class UserRepository implements UserProvider {
   final UserProvider provider = UserProvider();
 
   @override
-  Future<bool> add(UserModel user) {
-    return provider.add(user);
+  Future<bool> add(UserModel user) async {
+    return await provider.add(user);
   }
 
   @override
-  Future<bool> update(UserModel user) {
-    return provider.update(user);
+  Future<bool> update(UserModel user) async {
+    return await provider.update(user);
   }
   
   @override
-  Future<bool> delete(int idUser) {
-    return provider.delete(idUser);
+  Future<bool> delete(int idUser) async {
+    return await provider.delete(idUser);
   }
 
   @override
-  Future<List<UserModel>> get() {
-    return provider.get();
+  Future<List<UserModel>> get() async {
+    return await provider.get();
   }
 
   @override
-  Future<UserModel?> getById(int idUser) {
-    return provider.getById(idUser);
+  Future<UserModel?> getById(int idUser) async {
+    return await provider.getById(idUser);
   }
   
   @override
-  Future<UserModel?> getByEmail(String email) {
-    return provider.getByEmail(email);
+  Future<UserModel?> getByEmail(String email) async {
+    return await provider.getByEmail(email);
   }
 }

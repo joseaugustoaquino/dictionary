@@ -42,7 +42,11 @@ class _FavoriteViewState extends State<FavoriteView> {
                 { return const SizedBox(); }
 
                 return InkWell(
-                  onTap: () async => await Get.toNamed(Routes.word, arguments: word.word!.id!),
+                  onTap: () async {
+                    await Get.toNamed(Routes.word, arguments: word.word!.id!);
+                    await _.getFavotire();
+                    return;
+                  },
                   child: Card(
                     elevation: 5,
                     color: Colors.white,

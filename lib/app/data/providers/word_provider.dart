@@ -69,5 +69,19 @@ class WordProvider implements WordInterface {
 
 
     return result.isEmpty ? null : WordModel.fromMap(result.first);
+  }
+  
+  @override
+  Future<WordModel?> getByDescription(String word) async {
+    _db = await DBSet.instance.database;
+    if (_db == null) return null;
+
+    List<Map<String, dynamic>> result = await _db?.rawQuery('''
+      SELECT * FROM words
+      WHERE description = ?;
+    ''', [word]) ?? [];
+
+
+    return result.isEmpty ? null : WordModel.fromMap(result.first);
   } 
 }

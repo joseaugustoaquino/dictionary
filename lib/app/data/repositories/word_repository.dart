@@ -5,28 +5,33 @@ class WordRepository implements WordProvider {
   final WordProvider provider = WordProvider();
 
   @override
-  Future<bool> add(WordModel word) {
-    return provider.add(word);
+  Future<bool> add(WordModel word) async {
+    return await provider.add(word);
   }
 
   @override
-  Future<bool> update(WordModel word) {
-    return provider.update(word);
+  Future<bool> update(WordModel word) async {
+    return await provider.update(word);
   }
   
   @override
-  Future<bool> delete(int idWord) {
-    return provider.delete(idWord);
+  Future<bool> delete(int idWord) async {
+    return await provider.delete(idWord);
   }
 
   @override
-  Future<List<WordModel>> get() {
-    return provider.get();
+  Future<List<WordModel>> get() async {
+    return await provider.get();
   }
 
   @override
-  Future<WordModel?> getById(int idWord) {
-    return provider.getById(idWord);
+  Future<WordModel?> getById(int idWord) async {
+    return await provider.getById(idWord);
+  }
+  
+  @override
+  Future<WordModel?> getByDescription(String word) async {
+    return await provider.getByDescription(word);
   }
 
 }

@@ -42,7 +42,11 @@ class _HistoricViewState extends State<HistoricView> {
                 { return const SizedBox(); }
 
                 return InkWell(
-                  onTap: () async => await Get.toNamed(Routes.word, arguments: word.word!.id!),
+                  onTap: () async {
+                    await Get.toNamed(Routes.word, arguments: word.word!.id!);
+                    await _.getHistory();
+                    return;
+                  },
                   child: Card(
                     elevation: 5,
                     color: Colors.white,

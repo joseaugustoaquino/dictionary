@@ -10,4 +10,6 @@ abstract class WordInterface {
   Future<List<WordModel>> get();
 
   Future<WordModel?> getById(int idWord);
+
+  Future<WordModel?> getByDescription(String word);
 }

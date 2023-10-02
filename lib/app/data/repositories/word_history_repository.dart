@@ -5,38 +5,38 @@ class WordHistoryRepository implements WordHistoryProvider {
   final WordHistoryProvider provider = WordHistoryProvider();
 
   @override
-  Future<bool> add(WordHistoryModel wordHistory) {
-    return provider.add(wordHistory);
+  Future<bool> add(WordHistoryModel wordHistory) async {
+    return await provider.add(wordHistory);
   }
 
   @override
-  Future<bool> update(WordHistoryModel wordHistory) {
-    return provider.update(wordHistory);
+  Future<bool> update(WordHistoryModel wordHistory) async {
+    return await provider.update(wordHistory);
   }
 
   @override
-  Future<bool> delete(int idWordHistory) {
-    return provider.delete(idWordHistory);
+  Future<bool> delete(int idWordHistory) async {
+    return await provider.delete(idWordHistory);
   }
 
   @override
-  Future<List<WordHistoryModel>> get() {
-    return provider.get();
+  Future<List<WordHistoryModel>> get() async {
+    return await provider.get();
   }
 
   @override
-  Future<WordHistoryModel?> getById(int idWordHistory) {
-    return provider.getById(idWordHistory);
+  Future<WordHistoryModel?> getById(int idWordHistory) async {
+    return await provider.getById(idWordHistory);
   }
 
   @override
-  Future<List<WordHistoryModel>> getByUser(int idUser) {
-    return provider.getByUser(idUser);
+  Future<List<WordHistoryModel>> getByUser(int idUser) async {
+    return await provider.getByUser(idUser);
   }
   
   @override
-  Future<WordHistoryModel?> getByWord(int idUser, int idWord) {
-    return provider.getByWord(idUser, idWord);
+  Future<WordHistoryModel?> getByWord(int idUser, int idWord) async {
+    return await provider.getByWord(idUser, idWord);
   }
   
 }

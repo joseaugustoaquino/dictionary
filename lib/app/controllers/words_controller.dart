@@ -2,11 +2,11 @@
 
 import 'dart:convert';
 
+import 'package:dictionary/app/data/repositories/word_repository.dart';
 import 'package:dictionary/app/data/services/authentication_service.dart';
 import 'package:dictionary/app/data/models/word_history_model.dart';
 import 'package:dictionary/app/data/models/word_model.dart';
 import 'package:dictionary/app/data/repositories/word_history_repository.dart';
-import 'package:dictionary/app/data/repositories/word_repository.dart';
 import 'package:dictionary/app/widgets/snack_bar_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -51,19 +51,13 @@ class WordsController extends GetxController {
   Future getWords() async {
     try {
       loading.value = true;
-      words.value = await _wordRep.get();
+      
+      var wordsJson = await rootBundle.loadString('assets/wrods.json');
+      Map<String, dynamic> wordsMap = json.decode(wordsJson);
 
-      if (words.value.isEmpty) {
-        var wordsJson = await rootBundle.loadString('assets/wrods.json');
-        Map<String, dynamic> wordsMap = json.decode(wordsJson);
-
-        words.value = wordsMap.entries
-                              .map((entry) => WordModel(description: entry.key.toString().toUpperCase()))
-                              .toList();
-
-        for (var w in words.value) { await _wordRep.add(w); }
-        words.value = await _wordRep.get();
-      }
+      words.value = wordsMap.entries
+                            .map((entry) => WordModel(description: entry.key.toString().toUpperCase()))
+                            .toList();
 
       if (words.value.isEmpty) 
       { throw Exception("Ops, We did not identify any registered words!"); }
@@ -139,6 +133,39 @@ class WordsController extends GetxController {
     }
   } 
 
+  Future<WordModel?> addWord({required String description}) async {
+    try {
+      loading.value = true;
+      
+      var searchWord = await _wordRep.getByDescription(description);
+
+      if (searchWord == null) { 
+        var word = await _wordRep.add(WordModel(description: description)); 
+        if (word) {
+          searchWord = await _wordRep.getByDescription(description);
+        } else {
+          throw Exception("Ops, Failed to add word!"); 
+        }
+      } 
+
+      if (searchWord?.id == null) {
+        throw Exception("Ops, Word not found!");
+      } 
+
+      loading.value = false;
+      return searchWord;
+    } on Exception catch (_) {
+      showSnackBarCustom(_.toString().replaceAll("Exception:", ""));
+      printError(info: _.toString());
+      loading.value = false;
+      return null;
+    } catch (_) {
+      showSnackBarCustom("Ops, $_");
+      printError(info: _.toString());
+      loading.value = false;
+      return null;
+    }
+  } 
   /// FUNCTIONS
   void changePage(Pages value) async {
     if (loading.value) {
