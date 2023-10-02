@@ -1,8 +1,8 @@
 import 'package:dictionary/app/data/services/authentication_service.dart';
-import 'package:dictionary/app/data/models/definition_words_model.dart';
+import 'package:dictionary/app/data/models/word_definition_model.dart';
 import 'package:dictionary/app/data/models/word_history_model.dart';
 import 'package:dictionary/app/data/models/word_model.dart';
-import 'package:dictionary/app/data/repositories/definition_word_repository.dart';
+import 'package:dictionary/app/data/repositories/word_definition_repository.dart';
 import 'package:dictionary/app/data/repositories/word_history_repository.dart';
 import 'package:dictionary/app/data/repositories/word_repository.dart';
 import 'package:dictionary/app/widgets/snack_bar_custom.dart';
@@ -17,12 +17,12 @@ class WordController extends GetxController {
   final WordRepository _wordRep = WordRepository();
   final AuthenticationService _authServ = AuthenticationService();
   final WordHistoryRepository _wordHistoryRep = WordHistoryRepository();
-  final DefinitionWordRepository _definitionWordRep = DefinitionWordRepository();
+  final WordDefinitionRepository _definitionWordRep = WordDefinitionRepository();
 
   var loading = RxBool(true);
 
   var word = Rx(WordHistoryModel());
-  var wordDefinition = Rx(DefinitionWordModel());
+  var wordDefinition = Rx(WordDefinitionModel());
 
   @override
   void onReady() async {
@@ -78,7 +78,7 @@ class WordController extends GetxController {
       }
 
       if (word.value.id != null) {
-        wordDefinition.value = await getDefinitationWord(word.value.word?.description ?? "") ?? DefinitionWordModel(); 
+        wordDefinition.value = await getWordDefinitation(word.value.word?.description ?? "") ?? WordDefinitionModel(); 
         return loading.value = false;
       } else {
         throw Exception("Ops, Word not found!");
@@ -94,7 +94,7 @@ class WordController extends GetxController {
     }
   } 
 
-  Future<DefinitionWordModel?> getDefinitationWord(String word) async {
+  Future<WordDefinitionModel?> getWordDefinitation(String word) async {
     try {
       var result = await _definitionWordRep.get(word);
 
