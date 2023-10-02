@@ -44,10 +44,10 @@
       "languageVersion": "2.19"
     },
     {
-      "name": "equatable",
-      "rootUri": "file:///home/projetos03/.pub-cache/hosted/pub.dev/equatable-2.0.5",
+      "name": "dio",
+      "rootUri": "file:///home/projetos03/.pub-cache/hosted/pub.dev/dio-5.3.3",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.15"
     },
     {
       "name": "fake_async",
@@ -86,6 +86,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "flutter_tts",
+      "rootUri": "file:///home/projetos03/.pub-cache/hosted/pub.dev/flutter_tts-3.8.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_web_plugins",
       "rootUri": "file:///home/projetos03/snap/flutter/common/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
@@ -105,7 +111,7 @@
     },
     {
       "name": "google_fonts",
-      "rootUri": "file:///home/projetos03/.pub-cache/hosted/pub.dev/google_fonts-4.0.5",
+      "rootUri": "file:///home/projetos03/.pub-cache/hosted/pub.dev/google_fonts-5.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
@@ -126,30 +132,6 @@
       "rootUri": "file:///home/projetos03/.pub-cache/hosted/pub.dev/intl-0.18.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
-    },
-    {
-      "name": "js",
-      "rootUri": "file:///home/projetos03/.pub-cache/hosted/pub.dev/js-0.6.7",
-      "packageUri": "lib/",
-      "languageVersion": "2.19"
-    },
-    {
-      "name": "libphonenumber_platform_interface",
-      "rootUri": "file:///home/projetos03/.pub-cache/hosted/pub.dev/libphonenumber_platform_interface-0.4.1",
-      "packageUri": "lib/",
-      "languageVersion": "3.0"
-    },
-    {
-      "name": "libphonenumber_plugin",
-      "rootUri": "file:///home/projetos03/.pub-cache/hosted/pub.dev/libphonenumber_plugin-0.3.2",
-      "packageUri": "lib/",
-      "languageVersion": "3.0"
-    },
-    {
-      "name": "libphonenumber_web",
-      "rootUri": "file:///home/projetos03/.pub-cache/hosted/pub.dev/libphonenumber_web-0.3.1",
-      "packageUri": "lib/",
-      "languageVersion": "3.0"
     },
     {
       "name": "lints",
@@ -222,6 +204,12 @@
       "rootUri": "file:///home/projetos03/.pub-cache/hosted/pub.dev/path_provider_windows-2.2.1",
       "packageUri": "lib/",
       "languageVersion": "2.19"
+    },
+    {
+      "name": "percent_indicator",
+      "rootUri": "file:///home/projetos03/.pub-cache/hosted/pub.dev/percent_indicator-4.2.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "platform",
@@ -339,7 +327,7 @@
     },
     {
       "name": "zezis_widget",
-      "rootUri": "file:///home/projetos03/.pub-cache/hosted/pub.dev/zezis_widget-0.0.8",
+      "rootUri": "file:///home/projetos03/.pub-cache/hosted/pub.dev/zezis_widget-0.0.3",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -350,7 +338,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2023-09-28T15:02:39.301728Z",
+  "generated": "2023-10-02T11:34:16.832947Z",
   "generator": "pub",
   "generatorVersion": "3.1.3"
 }
