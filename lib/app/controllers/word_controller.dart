@@ -6,17 +6,21 @@ import 'package:dictionary/app/data/repositories/definition_word_repository.dart
 import 'package:dictionary/app/data/repositories/word_history_repository.dart';
 import 'package:dictionary/app/data/repositories/word_repository.dart';
 import 'package:dictionary/app/widgets/snack_bar_custom.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get/get.dart';
 
 class WordController extends GetxController {
   static WordController get to => Get.find();
   
+
+  final FlutterTts flutterTts = FlutterTts();
   final WordRepository _wordRep = WordRepository();
   final WordHistoryRepository _wordHistoryRep = WordHistoryRepository();
   final AuthenticationController _authenticationCon = AuthenticationController();
   final DefinitionWordRepository _definitionWordRep = DefinitionWordRepository();
 
   var loading = RxBool(true);
+
   var word = Rx(WordHistoryModel());
   var wordDefinition = Rx(DefinitionWordModel());
 
@@ -29,7 +33,17 @@ class WordController extends GetxController {
       showSnackBarCustom("Ops, Search argument not found!");
     }
 
+    await flutterTts.setLanguage("en-US");
+    await flutterTts.setSpeechRate(0.05);
+    await flutterTts.isLanguageAvailable("en-US");
+
     super.onReady();
+  }
+
+  @override
+  void onClose() async {
+    flutterTts.stop();
+    super.onClose();
   }
 
   Future getById({required int idWord}) async {

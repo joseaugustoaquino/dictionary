@@ -5,10 +5,11 @@ class DefinitionWordModel {
   String? word;
   double? frequency;
 
-  SyllablesModel? syllables;
-  PronunciationModel? pronunciation;
+  SyllablesModel? syllables; 
+  PronunciationModel? pronunciation; ///
 
   List<ResultModel>? results;
+
   DefinitionWordModel({
     this.word,
     this.frequency,
@@ -98,6 +99,7 @@ class ResultModel {
   String? definition;
   String? partOfSpeech;
   List<String?>? typeOf;
+  List<String?>? synonyms;
   List<String?>? hasTypes;
   List<String?>? derivation;
 
@@ -105,6 +107,7 @@ class ResultModel {
     this.definition,
     this.partOfSpeech,
     this.typeOf,
+    this.synonyms,
     this.hasTypes,
     this.derivation,
   });
@@ -114,6 +117,7 @@ class ResultModel {
       'definition': definition,
       'partOfSpeech': partOfSpeech,
       'typeOf': typeOf?.map((x) => x).toList(),
+      'synonyms': synonyms?.map((x) => x).toList(),
       'hasTypes': hasTypes?.map((x) => x).toList(),
       'derivation': derivation?.map((x) => x).toList(),
     };
@@ -127,6 +131,9 @@ class ResultModel {
       typeOf: map['typeOf'] != null 
         ? List<String>.from((map['typeOf'] as List<dynamic>)) : null,
       
+      synonyms: map['synonyms'] != null 
+        ? List<String>.from((map['synonyms'] as List<dynamic>)) : null,
+
       hasTypes: map['hasTypes'] != null 
         ? List<String>.from((map['hasTypes'] as List<dynamic>)) : null,
       
