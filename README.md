@@ -20,6 +20,10 @@ O Projeto está disponível para downloads e compilado para instalações em dis
 
 Acesso o link disponibilizado pelo desenvolvedor para realizar o download do .APK e siga as instruções disponíveis no link: [Instruções-Download](https://etecspgov-my.sharepoint.com/:f:/g/personal/jose_aquino6_etec_sp_gov_br/EglU9bsYDiBInrF7OGbi_kIBJ0h2Bsc90_IWKKEzuhSE7w?e=ZjSoBb)
 
+## Apresentação
+
+Apresentação do projeto: [Loom](https://www.loom.com/embed/65974f9486f44982ac7faf909d084e20)
+
 ## Suporte
 
 Entre em contato pelo [WhatsApp](https://api.whatsapp.com/send?phone=5516988087264) para tirar dúvidas ou solicitar orientações de uso.
